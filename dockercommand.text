@@ -1,0 +1,13 @@
+docker container rm -f Zabbix-agent &&
+
+docker run \
+--name=Zabbix-agent \
+--net=bridge \
+--privileged \
+-p 10051:10050 \
+-v /:/rootfs \
+-v /var/run:/var/run \
+--restart always \
+-e "ZA_Server=172.31.32.101" \
+-e "ZA_ServerActive=172.31.32.101" \
+-d monitoringartist/dockbix-agent-xxl-limited:latest
